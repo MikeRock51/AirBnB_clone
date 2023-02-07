@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+from copy import copy
 
 class BaseModel:
     """Base class for our project"""
@@ -17,5 +18,16 @@ class BaseModel:
     def __str__(self):
         """Overrides the default __str__ method"""
         return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
+    
+    def save(self):
+        """Updates the 'updated_at' variable with the current datetime"""
+        self.created_at = datetime.now()
 
+    def to_dict(self):
+        """Returns a dictionary representation of an instance"""
+        instance = copy(self.__dict__)
+        instance['__class__'] = type(self).__name__
+        instance['created_at'] = instance['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
+        instance['updated_at'] = instance['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
+        return instance
     
