@@ -26,15 +26,23 @@ class FileStorage:
             objects = {key: value.to_dict() for key, value in FileStorage.__objects.items()}
             json.dump(objects, f)
 
+    def class_list(self):
+        """Maps classes to it's corresponding dictionary"""
+        from models.base_model import BaseModel
+
+        return {
+            "BaseModel": BaseModel
+        }
+
     def reload(self):
         """Deserializes the JSON file to __objects
         (only if the JSON file (__file_path) exists"""
 
         if not os.path.exists(FileStorage.__file_path):
             return
-        else:
-            with open(FileStorage.__file_path, "r") as f:
-                json_dict = json.load(f)
-                for vals in json_dict.values():
-                    self.new(eval(vals['__class__'])(**vals))
-            
+
+        with open(FileStorage.__file_path, "r") as f:
+            json_dict = json.load(f)
+            for vals in json_dict.values():
+                cls = self.class_list()[vals['__class__']]
+                self.new(cls(**vals))
