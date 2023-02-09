@@ -3,15 +3,24 @@
 
 import cmd
 from models.base_model import BaseModel
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter class"""
 
     prompt = '(hbnb) '
 
-    def do_create(self, cls):
+    def do_create(self, class_name):
         """Creates a new instance of BaseModel"""
-        pass
+
+        if not class_name:
+            print("** class name missing **")
+        elif globals().get(class_name) is None:
+            print("** class doesn't exist ** ")
+        else:
+            instance = storage.class_list()[class_name]()
+            instance.save()
+            print(instance.id)
 
     def do_EOF(self, line):
         """Quits the command interpreter when it receives EOF signal"""
