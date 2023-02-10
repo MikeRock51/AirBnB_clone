@@ -39,8 +39,8 @@ class HBNBCommand(cmd.Cmd):
             print(storage.all()[f"{line[0]}.{line[1]}"])
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and
-        id (save the change into the JSON file)."""
+        """Deletes an instance based on the class name and id
+        (save the change into the JSON file)."""
 
         line = line.split()
         if len(line) < 1:
