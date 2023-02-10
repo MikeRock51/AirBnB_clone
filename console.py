@@ -4,6 +4,8 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import json
+
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter class"""
@@ -30,9 +32,9 @@ class HBNBCommand(cmd.Cmd):
         if len(line) < 1:
             print("** class name missing **")
         elif globals().get(line[0]) is None:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(line) < 2:
-                print("** instance id missing **")
+            print("** instance id missing **")
         elif not f"{line[0]}.{line[1]}" in storage.all():
             print("** no instance found **")
         else:
@@ -46,13 +48,26 @@ class HBNBCommand(cmd.Cmd):
         if len(line) < 1:
             print("** class name missing **")
         elif globals().get(line[0]) is None:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(line) < 2:
-                print("** instance id missing **")
+            print("** instance id missing **")
         elif not f"{line[0]}.{line[1]}" in storage.all():
             print("** no instance found **")
         else:
-            del(storage.all()[f"{line[0]}.{line[1]}"])
+            del (storage.all()[f"{line[0]}.{line[1]}"])
+
+    def do_all(self, class_name):
+        """Prints all string representation of all
+        instances based or not on the class name"""
+
+        if not class_name:
+            print(list(str(instance) for instance in storage.all().values()))
+        else:
+            if globals().get(class_name) is None:
+                print("** class doesn't exist **")
+            else:
+                print(list(str(instance) for instance in storage.all(
+                ).values() if type(instance).__name__ == class_name))
 
     def do_EOF(self, line):
         """Quits the command interpreter when it receives EOF signal"""
@@ -65,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
