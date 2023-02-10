@@ -29,9 +29,11 @@ class FileStorage:
     def class_list(self):
         """Maps classes to it's corresponding dictionary"""
         from models.base_model import BaseModel
+        from models.user import User
 
         return {
-            "BaseModel": BaseModel
+            "BaseModel": BaseModel,
+            "User": User
         }
 
     def reload(self):
