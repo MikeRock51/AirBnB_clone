@@ -11,7 +11,12 @@ class BaseModel:
     """Base class for our project"""
 
     def __init__(self, *args, **kwargs):
-        """Base object constructor"""
+        """Base class object constructor
+
+        Args:
+            args: a list of arguments
+            kwargs: A dictionary of key/value arguments
+        """
 
         if kwargs != {}:
             for key, value in kwargs.items():
@@ -38,6 +43,7 @@ class BaseModel:
 
     def to_dict(self):
         """Returns a dictionary representation of an instance"""
+
         instance = copy(self.__dict__)
         instance['__class__'] = type(self).__name__
         instance['created_at'] = instance['created_at'].strftime(
