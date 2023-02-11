@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(line) < 2:
             print("** instance id missing **")
-        elif not f"{line[0]}.{line[1]}" in storage.all():
+        elif f"{line[0]}.{line[1]}" not in storage.all():
             print("** no instance found **")
         else:
             print(storage.all()[f"{line[0]}.{line[1]}"])
@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(line) < 2:
             print("** instance id missing **")
-        elif not f"{line[0]}.{line[1]}" in storage.all():
+        elif f"{line[0]}.{line[1]}" not in storage.all():
             print("** no instance found **")
         else:
             del (storage.all()[f"{line[0]}.{line[1]}"])
@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(line) < 2:
             print("** instance id missing **")
-        elif not f"{line[0]}.{line[1]}" in storage.all():
+        elif f"{line[0]}.{line[1]}" not in storage.all():
             print("** no instance found **")
         elif len(line) < 3:
             print("** attribute name missing **")
