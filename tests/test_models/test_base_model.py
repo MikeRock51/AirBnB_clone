@@ -39,3 +39,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(type(b)), "<class 'models.base_model.BaseModel'>")
         self.assertIsInstance(b, BaseModel)
         self.assertTrue(issubclass(type(b), BaseModel))
+
+if __name__ == '__main__':
+    unittest.main()
