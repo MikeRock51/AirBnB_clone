@@ -10,6 +10,7 @@ import sys
 from io import StringIO
 import re
 import os
+import json
 
 
 class TestHBNBCommand(unittest.TestCase):
