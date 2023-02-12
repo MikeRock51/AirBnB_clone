@@ -11,6 +11,7 @@ from models.place import Place
 from models.review import Review
 from models import storage
 from ast import literal_eval
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -24,15 +25,14 @@ class HBNBCommand(cmd.Cmd):
         if not class_name:
             print("** class name missing **")
         elif globals().get(class_name) is None:
-            print("** class doesn't exist ** ")
+            print("** class doesn't exist **")
         else:
             instance = storage.class_list()[class_name]()
             instance.save()
             print(instance.id)
 
     def do_show(self, line):
-        """Prints the string representation of an
-        instance based on the class name and id"""
+        """Prints the string representation of an instance"""
 
         line = line.split()
         if len(line) < 1:
@@ -47,8 +47,7 @@ class HBNBCommand(cmd.Cmd):
             print(storage.all()[f"{line[0]}.{line[1]}"])
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id
-        (save the change into the JSON file)."""
+        """Deletes an instance based on the class name and id"""
 
         line = line.split()
         if len(line) < 1:
@@ -63,8 +62,7 @@ class HBNBCommand(cmd.Cmd):
             del (storage.all()[f"{line[0]}.{line[1]}"])
 
     def do_all(self, class_name):
-        """Prints all string representation of all
-        instances based or not on the class name"""
+        """Prints all string representation of all instances"""
 
         if not class_name:
             print(list(str(instance) for instance in storage.all().values()))
@@ -76,8 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 ).values() if type(instance).__name__ == class_name))
 
     def do_update(self, line):
-        """ Updates an instance based on the
-        class name and id by adding or updating attribute """
+        """Updates an instance based on the class name and id"""
 
         # Usage: update <class name> <id> <attribute name> "<attribute value>"
         line = line.split()
@@ -114,6 +111,58 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
+
+    def default(self, line):
+        ''' implements the default commands  '''
+        objects = storage.all().values()
+        argv = line.split('.', 1)
+
+        if len(argv) != 2 or argv[0] not in storage.class_list():
+            print('*** unknown syntax:', line)
+            return
+
+        if argv[0] in storage.class_list() and argv[1].endswith('()'):
+            command = argv[1][:-2]
+
+            if command not in ['all', 'count']:
+                print('*** unknown syntax:', line)
+                return
+
+            if command == 'all':
+                attrs = \
+                    [obj for obj in objects if type(obj).__name__ == argv[0]]
+                [print(att, end=', ' if att != attrs[-1] else '\n')
+                    for att in attrs]
+                return
+
+            if command == 'count':
+                count = 0
+                for obj in objects:
+                    if type(obj).__name__ == argv[0]:
+                        count += 1
+                print(count)
+                return
+
+        cls_name = argv[0]
+        param = re.search(r"\((.*?)\)", argv[1])
+        attributes = re.search(r"\{(.*?)\}", param[1])
+
+        if param:
+            method = argv[1][:param.span()[0]]
+            param_list = param[1].split(', ', 2)
+            id = param_list[0][1:-1]
+            if len(param_list) == 1:
+                line = ' '.join([cls_name, id])
+                eval('self.do_' + method)(line)
+            elif not attributes:
+                param_list = ' '.join(param_list)
+                line = ' '.join([cls_name, param_list])
+                eval('self.do_' + method)(line)
+            else:
+                param_list = param[1].split(', ', 1)
+                attr_dict = param_list[1].replace("'", '"')
+                line = ' '.join([cls_name, ls_name, id, attr_dict])
+                eval('self.do_' + method)(line)
 
 
 if __name__ == '__main__':
