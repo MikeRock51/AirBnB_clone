@@ -6,6 +6,8 @@ header {
 }
 
 .logo {
-    position: absolute;
-    left: 20px;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-position: 20px;
+    height: 100%;
 }
