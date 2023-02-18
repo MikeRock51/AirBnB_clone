@@ -42,16 +42,26 @@ article h2 {
     border-top: solid #DDDDDD 1px;
     border-bottom: solid #DDDDDD 1px;
     margin-top: 30px;
-    padding-top: 25px;
+    padding-top: 5px;
 }
 
 .information div {
     display: inline-block;
     padding: 0 10px;
     width: 100px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-top: 25px;
 }
 
 .information .max_guest {
     background-image: url(../images/icon_group.png);
-    background-repeat: no-repeat;
+}
+
+.information .number_rooms {
+    background-image: url(../images/icon_bed.png);
+}
+
+.information .number_bathrooms {
+    background-image: url(../images/icon_bath.png);
 }
