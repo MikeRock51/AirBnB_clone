@@ -9,7 +9,6 @@
     width: 100%;
     border: 1px #DDDDDD solid;
     border-radius: 4px;
-    position: relative;
 }
 
 .search-btn {
@@ -20,9 +19,9 @@
     width: 20%;
     border: none;
     border-radius: 4px;
-    position: absolute;
-    right: 30px;
-    margin: 10px 0;
+    float: right;
+    margin: 10px 30px;
+    /* position: relative; */
 }
 
 .search-btn:hover {
@@ -32,9 +31,8 @@
 .locations, .amenities {
     height: 100%;
     width: 25%;
-    display: inline-block;
+    float: left;
     margin: 0;
-    margin: 0 20px;
 }
 
 .locations {
@@ -52,13 +50,16 @@
     margin: 0;
 }
 
+.filters h3, .filters h4 {
+    padding: 0px 10px;
+}
+
 .popover {
     border: #DDDDDD 1px solid;
     border-radius: 4px;
-    width: 100%;
+    max-width: 100%;
     background-color: #FAFAFA;
-    padding-left: 20px;
-    padding-top: 5px;
+    display: none;
 }
 
 .popover li {
@@ -67,4 +68,8 @@
 
 .popover h2 {
     font-size: 16px;
+}
+
+.amenities:hover .popover, .locations:hover .popover {
+    display: block;
 }
