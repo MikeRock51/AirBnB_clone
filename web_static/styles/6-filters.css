@@ -60,6 +60,7 @@
     max-width: 100%;
     background-color: #FAFAFA;
     display: none;
+    z-index: 1;
 }
 
 .popover li {

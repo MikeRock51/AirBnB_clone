@@ -1,0 +1,57 @@
+.places {
+    text-align: center;
+}
+
+.places h1 {
+    font-size: 30px;
+    text-align: left;
+}
+
+article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+}
+
+article h2 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+
+.price_by_night {
+    color: #FF5A5F;
+    border: #FF5A5F solid 4px;
+    border-radius: 100px;
+    min-width: 60px;
+    height: 60px;
+    font-size: 30px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    line-height: 60px;
+    margin-left: 5px;
+}
+
+.information {
+    height: 80px;
+    border-top: solid #DDDDDD 1px;
+    border-bottom: solid #DDDDDD 1px;
+    margin-top: 30px;
+    padding-top: 25px;
+}
+
+.information div {
+    display: inline-block;
+    padding: 0 10px;
+    width: 100px;
+}
+
+.information .max_guest {
+    background-image: url(../images/icon_group.png);
+    background-repeat: no-repeat;
+}
