@@ -77,9 +77,8 @@ article h2 {
     margin: 12px auto;
 }
 
-.amenities, .reviews {
+article .amenities, article .reviews {
     margin-top: 40px;
-    clear: both;
     width: 100%;
     text-align: left;
 }
@@ -91,4 +90,43 @@ article li {
 .amenities h2, .reviews h2 {
     font-size: 16px;
     border-bottom: #DDDDDD solid 1px;
+}
+
+.amenities ul {
+    margin-bottom: 30px;
+    padding-left: 0;
+}
+
+.amenities ul li {
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 25px;
+    padding: 8px 40px;
+}
+
+.amenities .tv {
+    background-image: url(../images/icon_tv.png);
+}
+
+.amenities .wifi {
+    background-image: url(../images/icon_wifi.png);
+}
+
+.amenities .pets {
+    background-image: url(../images/icon_pets.png);
+}
+
+.reviews ul {
+    padding-left: 0;
+}
+
+.reviews h3 {
+    font-size: 14px;
+    margin: 5px auto;    
+}
+
+.reviews p {
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 15px;
 }
