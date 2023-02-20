@@ -11,3 +11,9 @@ header {
     background-position: 20px;
     height: 100%;
 }
+
+@media (max-width: 500px) {
+    .logo {
+        background-position: center center;
+    }
+}

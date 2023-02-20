@@ -5,3 +5,9 @@ body {
     font-size: 14px;
     font-family: Circular,"Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+/* @media (max-width: 376px) {
+    body {
+        padding: 0 50px;
+    }
+} */
