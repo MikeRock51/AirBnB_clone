@@ -136,6 +136,6 @@ article li {
     margin-bottom: 15px;
 }
 
-.amenities {
-    height: unset;
+article:last-child {
+    margin-bottom: 70px;
 }
