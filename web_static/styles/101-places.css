@@ -1,7 +1,10 @@
 .places {
     text-align: center;
-    /* display: flex; */
+}
 
+.places div.article {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .places h1 {
@@ -131,4 +134,8 @@ article li {
     font-size: 12px;
     margin-top: 2px;
     margin-bottom: 15px;
+}
+
+.amenities {
+    height: unset;
 }
